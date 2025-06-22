@@ -7,7 +7,7 @@ from concurrent.futures import ThreadPoolExecutor
 MIN_LAT, MAX_LAT = 24.0, 40.0
 MIN_LON, MAX_LON = 44.0, 63.0
 MIN_ZOOM = 6
-MAX_ZOOM = 8  # توصیه می‌کنم از 8 شروع کنی، چون بالاتر حجم سنگینی داره
+MAX_ZOOM = 8  # حجم سنگین برای زوم بالاتر و نیاز به اینترنت پر سرعت
 TILE_URL = "https://tile.openstreetmap.org/{z}/{x}/{y}.png"
 TILES_DIR = "tiles"
 
@@ -47,7 +47,7 @@ def download_tile(z, x, y, max_retries=3):
                 print(f"HTTP error on tile {z}/{x}/{y}: {e}")
         except Exception as e:
             print(f"Error downloading tile {z}/{x}/{y} attempt {attempt}: {e}")
-        time.sleep(1)  # قبل از تلاش دوباره صبر کن
+        time.sleep(1)  # صبر قبل از تلاش دوباره
     print(f"Failed to download tile {z}/{x}/{y} after {max_retries} attempts.")
 
 def main():
